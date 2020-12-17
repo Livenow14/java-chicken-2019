@@ -6,6 +6,7 @@ import domain.menu.Menu;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class MenuRepository {
     private static final List<Menu> menus = new ArrayList<>();
@@ -23,5 +24,13 @@ public class MenuRepository {
 
     public static List<Menu> menus() {
         return Collections.unmodifiableList(menus);
+    }
+
+    public static Menu findById(int menuNumber) {
+        Menu findMenu = menus.stream()
+                .filter(menu -> menu.getNumber() == menuNumber)
+                .findAny()
+                .orElseThrow(() -> new NoSuchElementException(menuNumber + "는 존재하지 않는 메뉴입니다."));
+        return findMenu;
     }
 }

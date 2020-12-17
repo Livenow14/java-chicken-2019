@@ -32,4 +32,18 @@ public class InputView {
     private static String inputNextLine() {
         return scanner.nextLine();
     }
+
+    public static int inputMenu() {
+        OutputView.printSharp("등록할 메뉴를 선택하세요.");
+        String inputValue = inputNextLine();
+        int option = stringToInt(inputValue);
+        return option;
+    }
+
+    public static int inputQuantity() {
+        OutputView.printSharp("메뉴의 수량을 입력하세요");
+        String inputValue = inputNextLine();
+        int option = stringToInt(inputValue);
+        return option;
+    }
 }

@@ -3,6 +3,8 @@ package domain.table;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 public class TableRepository {
     private static final List<Table> tables = new ArrayList<>();
@@ -18,5 +20,14 @@ public class TableRepository {
 
     public static List<Table> tables() {
         return Collections.unmodifiableList(tables);
+    }
+
+    public static Table findById(int tableNumber) {
+        Table findTable = tables.stream()
+                .filter(table -> table.getNumber() == tableNumber)
+                .findAny()
+                .orElseThrow(NoSuchElementException::new);
+        return findTable;
+
     }
 }

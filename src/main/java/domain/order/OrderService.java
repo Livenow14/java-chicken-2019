@@ -5,6 +5,7 @@ import domain.menu.MenuRepository;
 import domain.table.Table;
 import domain.table.TableRepository;
 import exception.ErrorCode;
+import exception.MenuException;
 import exception.TableException;
 import view.InputView;
 import view.OutputView;
@@ -27,13 +28,32 @@ public class OrderService {
     public void createOrder() {
         OutputView.printTables(tables);
         int tableNumber = InputView.inputTableNumber();
-        validateTables(tableNumber);
-        
+        Table table = TableRepository.findById(tableNumber);
+
+        OutputView.printMenus(menus);
+        int menuNumber = InputView.inputMenu();
+        Menu menu = MenuRepository.findById(menuNumber);
+
+        int quantity = InputView.inputQuantity();
+
+
+    }
+
+    private void validateMenus(int menuNumber) {
+        boolean isContain = menus.stream()
+                .map(menu -> menu.getNumber())
+                .anyMatch(t -> t == menuNumber);
+        if (!isContain) {
+            throw new MenuException(ErrorCode.MENU_NOT_CONTAINS_NUMBER);
+        }
     }
 
     private void validateTables(int tableNumber) {
-        if (!tables.contains(tableNumber)) {
-            throw new TableException(ErrorCode.NOT_CONTAINS_NUMBER);
+        boolean isContain = tables.stream()
+                .map(table -> table.getNumber())
+                .anyMatch(t -> t == tableNumber);
+        if (!isContain) {
+            throw new TableException(ErrorCode.Table_NOT_CONTAINS_NUMBER);
         }
     }
 }

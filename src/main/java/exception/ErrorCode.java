@@ -8,7 +8,10 @@ public enum ErrorCode {
     INVALID_INPUT_VALUE("In001", "숫자만 입력해주세요."),
 
     //Table
-    NOT_CONTAINS_NUMBER("T001", "테이블에 포함된 숫자가 아닙니다.");
+    Table_NOT_CONTAINS_NUMBER("T001", "테이블에 포함된 숫자가 아닙니다."),
+
+    //Menu
+    MENU_NOT_CONTAINS_NUMBER("T001", "테이블에 포함된 숫자가 아닙니다.");
 
     private final String Code;
     private final String message;
