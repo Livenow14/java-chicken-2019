@@ -46,4 +46,11 @@ public class InputView {
         int option = stringToInt(inputValue);
         return option;
     }
+
+    public static int inputPayMethod() {
+        OutputView.printSharp("신용 카드는 1번, 현금은 2번");
+        String inputValue = inputNextLine();
+        int option = stringToInt(inputValue);
+        return option;
+    }
 }

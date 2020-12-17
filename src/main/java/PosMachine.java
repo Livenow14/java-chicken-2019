@@ -1,6 +1,7 @@
 import domain.menu.Menu;
 import domain.menu.MenuRepository;
 import domain.order.OrderService;
+import domain.payment.PaymentService;
 import domain.table.Table;
 import domain.table.TableRepository;
 import exception.BusinessException;
@@ -38,7 +39,7 @@ public class PosMachine {
             orderManage();
         }
         if (mainOption == Option.Main_TWO.getOption()) {
-
+            payManage();
         }
         if (mainOption == Option.Main_THREE.getOption()) {
 
@@ -61,5 +62,11 @@ public class PosMachine {
     private void orderManage() {
         OrderService orderService = OrderService.init();
         orderService.createOrder();
+    }
+
+    private void payManage() {
+        PaymentService paymentService = PaymentService.init();
+        paymentService.pay();
+
     }
 }

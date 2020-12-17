@@ -39,6 +39,10 @@ public class Order {
         return menu;
     }
 
+    public int getTotalPrice() {
+        return menu.getPrice() * orderAmount.getAmount();
+    }
+
     public void checkMaxSize(int preAmount) {
         orderAmount.checkMaxSize(preAmount);
     }
