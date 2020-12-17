@@ -24,6 +24,14 @@ public class OutputView {
         }
     }
 
+    public static void printSharp(final String name) {
+        System.out.println(Prefix.SHARP.getPrefix() + name);
+    }
+
+    public static void println(final String name) {
+        System.out.println(name);
+    }
+
     private static void printLine(final String line, final int count) {
         for (int index = 0; index < count; index++) {
             System.out.print(line);
