@@ -8,14 +8,34 @@ import java.util.List;
 public class OutputView {
     private static final String TOP_LINE = "┌ ─ ┐";
     private static final String TABLE_FORMAT = "| %s |";
-    private static final String BOTTOM_LINE = "└ ─ ┘";
+    private static final String BOTTOM_LINE = "└ %s ┘";
+    private static final String ORDERED = "$";
+    private static final String NOT_ORDERED = "-";
 
     public static void printTables(final List<Table> tables) {
         System.out.println("## 테이블 목록");
         final int size = tables.size();
         printLine(TOP_LINE, size);
         printTableNumbers(tables);
-        printLine(BOTTOM_LINE, size);
+        printBottom(tables, BOTTOM_LINE, size);
+    }
+
+    private static void printBottom(List<Table> tables, String line, final int count) {
+        for (int index = 0; index < count; index++) {
+            if (isOrdered(tables.get(index))) {
+                System.out.printf(line, ORDERED);
+                continue;
+            }
+            System.out.printf(line, NOT_ORDERED);
+        }
+        System.out.println();
+    }
+
+    private static boolean isOrdered(Table table) {
+        if (table.isEmpty()) {
+            return false;
+        }
+        return true;
     }
 
     public static void printMenus(final List<Menu> menus) {

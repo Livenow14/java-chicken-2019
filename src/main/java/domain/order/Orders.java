@@ -54,6 +54,10 @@ public class Orders {
         return isSameMenu;
     }
 
+    public boolean isEmpty() {
+        return orders.isEmpty();
+    }
+
     public List<Order> getOrders() {
         return orders;
     }

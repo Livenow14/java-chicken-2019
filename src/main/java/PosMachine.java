@@ -25,9 +25,11 @@ public class PosMachine {
     }
 
     public void start() {
-        MainView.print();
-        int mainOption = InputView.inputMainOption();
-        chooseOption(mainOption);
+        while(true) {
+            MainView.print();
+            int mainOption = InputView.inputMainOption();
+            chooseOption(mainOption);
+        }
     }
 
     private void chooseOption(int mainOption) {

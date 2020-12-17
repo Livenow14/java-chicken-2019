@@ -27,4 +27,8 @@ public class Table {
     public Orders getOrders() {
         return orders;
     }
+
+    public boolean isEmpty() {
+        return orders.isEmpty();
+    }
 }
