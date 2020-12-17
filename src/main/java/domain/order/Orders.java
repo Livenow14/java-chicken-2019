@@ -20,7 +20,26 @@ public class Orders {
     }
 
     public void addOrder(Order order) {
+        if (isSameMenu(order)) {
+            addAmount(order);
+        }
         orders.add(order);
+    }
+
+    private void addAmount(Order order) {
+        orders.stream()
+                .forEach(order1 -> {
+                    if (order1.equals(order)) {
+                        order1.addAmount(order);
+                    }
+                });
+    }
+
+    private boolean isSameMenu(Order order) {
+        boolean isSameMenu = orders.stream()
+                .filter(o -> o.equals(order))
+                .findAny().isPresent();
+        return isSameMenu;
     }
 
     public List<Order> getOrders() {
