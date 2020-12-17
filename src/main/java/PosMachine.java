@@ -1,5 +1,6 @@
 import domain.menu.Menu;
 import domain.menu.MenuRepository;
+import domain.order.OrderService;
 import domain.table.Table;
 import domain.table.TableRepository;
 import exception.BusinessException;
@@ -7,7 +8,6 @@ import exception.ErrorCode;
 import view.InputView;
 import view.MainView;
 import view.Option;
-import view.OutputView;
 
 import java.util.List;
 
@@ -57,10 +57,7 @@ public class PosMachine {
     }
 
     private void orderManage() {
-        OutputView.printTables(tables);
-        int tableNumber = InputView.inputTableNumber();
-
+        OrderService orderService = OrderService.init();
+        orderService.createOrder();
     }
-
-
 }
