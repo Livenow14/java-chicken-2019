@@ -25,6 +25,7 @@ public class OutputView {
     }
 
     public static void printSharp(final String name) {
+        System.out.println();
         System.out.println(Prefix.SHARP.getPrefix() + name);
     }
 
@@ -43,6 +44,10 @@ public class OutputView {
         for (final Table table : tables) {
             System.out.printf(TABLE_FORMAT, table);
         }
+        System.out.println();
+    }
+
+    public static void printEnter() {
         System.out.println();
     }
 }

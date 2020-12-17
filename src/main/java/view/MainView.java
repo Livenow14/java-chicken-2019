@@ -11,5 +11,6 @@ public class MainView {
         OutputView.println(Prefix.ONE.getPrefix() + ORDER_SAVE);
         OutputView.println(Prefix.TWO.getPrefix() + PAYMENT);
         OutputView.println(Prefix.THREE.getPrefix() + EXIT);
+        OutputView.printSharp("원하는 기능을 선택하세요");
     }
 }

@@ -1,3 +1,4 @@
+import view.InputView;
 import view.MainView;
 
 public class PosMachine {
@@ -7,5 +8,6 @@ public class PosMachine {
 
     public void start() {
         MainView.print();
+        InputView.inputMainOption();
     }
 }
