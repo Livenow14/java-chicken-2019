@@ -40,7 +40,7 @@ public class InputView {
         return option;
     }
 
-    public static int inputQuantity() {
+    public static int inputAmount() {
         OutputView.printSharp("메뉴의 수량을 입력하세요");
         String inputValue = inputNextLine();
         int option = stringToInt(inputValue);

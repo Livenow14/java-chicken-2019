@@ -1,12 +1,10 @@
 package domain.order;
 
+import domain.OrderAmount;
 import domain.menu.Menu;
 import domain.menu.MenuRepository;
 import domain.table.Table;
 import domain.table.TableRepository;
-import exception.ErrorCode;
-import exception.MenuException;
-import exception.TableException;
 import view.InputView;
 import view.OutputView;
 
@@ -34,26 +32,10 @@ public class OrderService {
         int menuNumber = InputView.inputMenu();
         Menu menu = MenuRepository.findById(menuNumber);
 
-        int quantity = InputView.inputQuantity();
+        int amount = InputView.inputAmount();
+        OrderAmount orderAmount = new OrderAmount(amount);
+        Order order = new Order(menu, orderAmount);
 
-
-    }
-
-    private void validateMenus(int menuNumber) {
-        boolean isContain = menus.stream()
-                .map(menu -> menu.getNumber())
-                .anyMatch(t -> t == menuNumber);
-        if (!isContain) {
-            throw new MenuException(ErrorCode.MENU_NOT_CONTAINS_NUMBER);
-        }
-    }
-
-    private void validateTables(int tableNumber) {
-        boolean isContain = tables.stream()
-                .map(table -> table.getNumber())
-                .anyMatch(t -> t == tableNumber);
-        if (!isContain) {
-            throw new TableException(ErrorCode.Table_NOT_CONTAINS_NUMBER);
-        }
+        table.addOrder(order);
     }
 }

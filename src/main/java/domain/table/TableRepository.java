@@ -26,8 +26,7 @@ public class TableRepository {
         Table findTable = tables.stream()
                 .filter(table -> table.getNumber() == tableNumber)
                 .findAny()
-                .orElseThrow(NoSuchElementException::new);
+                .orElseThrow(() -> new NoSuchElementException(String.format("%d는 없는 테이블 번호입니다.", tableNumber)));
         return findTable;
-
     }
 }

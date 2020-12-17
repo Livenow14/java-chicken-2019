@@ -1,20 +1,14 @@
 package domain.order;
 
-import domain.OrderQuantity;
+import domain.OrderAmount;
 import domain.menu.Menu;
-import domain.table.Table;
 
 public class Order {
-    private final Table table;
     private final Menu menu;
-    private final OrderQuantity orderQuantity;
+    private final OrderAmount orderAmount;
 
-    public Order(Table table, Menu menu, OrderQuantity orderQuantity) {
-        this.table = table;
+    public Order(Menu menu, OrderAmount orderAmount) {
         this.menu = menu;
-        this.orderQuantity = orderQuantity;
+        this.orderAmount = orderAmount;
     }
-
-
-
 }
