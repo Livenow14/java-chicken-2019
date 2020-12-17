@@ -1,8 +1,9 @@
 package domain.order;
 
+import domain.OrderAmount;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Orders {
     private final List<Order> orders;
@@ -20,8 +21,11 @@ public class Orders {
     }
 
     public void addOrder(Order order) {
+        checkAmount(order);
+
         if (isSameMenu(order)) {
             addAmount(order);
+            return;
         }
         orders.add(order);
     }
@@ -35,6 +39,14 @@ public class Orders {
                 });
     }
 
+    private void checkAmount(Order order) {
+        int preAmount = orders.stream()
+                .map(Order::getOrderAmount)
+                .mapToInt(OrderAmount::getAmount)
+                .sum();
+        order.checkMaxSize(preAmount);
+    }
+
     private boolean isSameMenu(Order order) {
         boolean isSameMenu = orders.stream()
                 .filter(o -> o.equals(order))
@@ -44,18 +56,5 @@ public class Orders {
 
     public List<Order> getOrders() {
         return orders;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Orders orders1 = (Orders) o;
-        return Objects.equals(orders, orders1.orders);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(orders);
     }
 }

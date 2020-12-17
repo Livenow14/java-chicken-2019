@@ -21,6 +21,13 @@ public class OrderAmount {
     }
 
     public OrderAmount plus(OrderAmount orderAmount) {
+        checkMaxSize(orderAmount.amount);
         return new OrderAmount(this.amount + orderAmount.amount);
+    }
+
+    public void checkMaxSize(int preAmount) {
+        if (this.amount + preAmount > MAX_AMOUNT) {
+            throw new IllegalArgumentException(String.format("현재수량은 %d인데 %d를 더하면 최대 수량을 넘습니다.", preAmount, this.amount));
+        }
     }
 }

@@ -51,4 +51,25 @@ class OrderTest {
         Assertions.assertThat(orders.get(0)).isEqualTo(order);
         Assertions.assertThat(orders.get(0).getOrderAmount().getAmount()).isEqualTo(20);
     }
+
+    @Test
+    @DisplayName("최대 메뉴 이상 주문시 에러가 발생한다.")
+    void testMenuSaveError() {
+        //given
+        Table table = new Table(1);
+        Menu menu = new Menu(1, "매운치킨", Category.CHICKEN, 10000);
+        Menu menu2 = new Menu(2, "맞좋은치킨", Category.CHICKEN, 20000);
+        OrderAmount orderAmount = new OrderAmount(10);
+        OrderAmount orderAmount2 = new OrderAmount(90);
+
+        //when
+        Order order = new Order(menu, orderAmount);
+        Order order2 = new Order(menu2, orderAmount2);
+        table.addOrder(order);
+
+
+        //then
+        Assertions.assertThatThrownBy(() -> table.addOrder(order2))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

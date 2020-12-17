@@ -38,4 +38,8 @@ public class Order {
     public Menu getMenu() {
         return menu;
     }
+
+    public void checkMaxSize(int preAmount) {
+        orderAmount.checkMaxSize(preAmount);
+    }
 }
