@@ -45,17 +45,4 @@ class InputViewTest {
                 .isInstanceOf(InputViewException.class)
                 .hasMessage(ErrorCode.INVALID_INPUT_VALUE.getMessage());
     }
-
-    @Test
-    @DisplayName("보장된 기능이 아닐시 에러가 발생한다.")
-    void testinputValueNotAccept() {
-        //given
-        String inputValue = "-1";
-        inputScanner(inputValue);
-
-        //when
-        Assertions.assertThatThrownBy( () -> InputView.inputMainOption() )
-                .isInstanceOf(InputViewException.class)
-                .hasMessage(ErrorCode.CANNOT_CHOOSE_OPTION.getMessage());
-    }
 }
