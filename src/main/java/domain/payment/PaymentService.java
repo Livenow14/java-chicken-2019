@@ -1,5 +1,9 @@
 package domain.payment;
 
+import domain.discountPolicy.AmountDiscount;
+import domain.discountPolicy.CashDiscount;
+import domain.discountPolicy.DiscountPolicy;
+import domain.discountPolicy.NoneDiscount;
 import domain.menu.Menu;
 import domain.menu.MenuRepository;
 import domain.order.Orders;
@@ -8,6 +12,7 @@ import domain.table.TableRepository;
 import view.InputView;
 import view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -34,16 +39,17 @@ public class PaymentService {
         Orders orders = table.getOrders();
 
         OutputView.printOrderHistory(orders, tableNumber);
-        choosePaymentMethod();
+        choosePaymentMethod(orders);
     }
 
-    private void choosePaymentMethod() {
+    private void choosePaymentMethod(Orders orders) {
         int payMethod = InputView.inputPayMethod();
-        if (payMethod == PaymentMethod.CARD.getOption()) {
-
-        }
+        List<DiscountPolicy> discountPolicies = new ArrayList<>();
+        discountPolicies.add(new AmountDiscount());
         if (payMethod == PaymentMethod.CASH.getOption()) {
-
+            discountPolicies.add(new CashDiscount());
         }
+        Payment payment = new Payment(orders, discountPolicies);
+        payment.getPrice();
     }
 }

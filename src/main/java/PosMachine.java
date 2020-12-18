@@ -67,6 +67,5 @@ public class PosMachine {
     private void payManage() {
         PaymentService paymentService = PaymentService.init();
         paymentService.pay();
-
     }
 }

@@ -1,7 +1,7 @@
 package domain.discountPolicy;
 
-import domain.payment.Payment;
+import domain.order.Orders;
 
 public interface DiscountPolicy {
-    int discount(Payment payment);
+    int discount(Orders orders);
 }

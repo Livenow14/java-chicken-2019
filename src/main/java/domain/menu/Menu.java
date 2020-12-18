@@ -34,6 +34,10 @@ public class Menu {
         return price;
     }
 
+    public boolean isChicken() {
+        return category.equals(Category.CHICKEN);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
